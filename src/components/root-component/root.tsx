@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './root.scss';
 
 const RootComponent = (): JSX.Element => {

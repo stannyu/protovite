@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Outlet, Link } from 'react-router-dom';
 
+import { RootLayout } from './layouts/RootLayout';
+
 import { RootComponent } from './components/root-component/root';
+import { FolderDetails } from './components/folder/FolderDetails';
+import { BoardComponent } from './components/board/boardComponent';
+import { NotFoundPageComponent } from './components/404/404';
 
 import reactLogo from './assets/react.svg';
-import './App.css';
+import './App.scss';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,19 +21,20 @@ function App() {
 
   return (
     <div className="App">
+      <nav className='nav_header'>
+        <Link to="/home">Home</Link>
+        <br />
+        <Link to="/board">Board</Link>
+      </nav>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="dashboard" element={<Dashboard />} />
-
-          {/* Using path="*"" means "match anything", so this route
-                acts like a catch-all for URLs that we don't have explicit
-                routes for. */}
-          <Route path="*" element={<NoMatch />} />
-        </Route>
+        {/* <Route path='/' element={<RootLayout />}> */}
+        <Route index element={<RootComponent />} />
+        <Route path="home" element={<RootComponent />} />
+        <Route path="/board" element={<BoardComponent />} />
+        <Route path="/folder/:folderId" element={<FolderDetails />} />
+        <Route path="*" element={<NotFoundPageComponent />} />
+        {/* </Route> */}
       </Routes>
-      <RootComponent />´
     </div>
   );
 }

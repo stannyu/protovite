@@ -5,9 +5,17 @@ import './root-layout.scss';
 const RootLayout = () => {
   return (
     <div>
-      <div className="header">
-        <Link to="/board"> Board fr layout</Link>
-      </div>
+      <nav className="nav_header">
+        <Link to="/home" className="nav_link">
+          Home
+        </Link>
+        <Link to="/board" className="nav_link">
+          Board
+        </Link>
+        <Link to="/login" className="nav_link">
+          To login
+        </Link>
+      </nav>
       <Outlet />
     </div>
   );

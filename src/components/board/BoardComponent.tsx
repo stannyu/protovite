@@ -20,7 +20,6 @@ const BoardComponent = () => {
 
   return (
     <div className="board_wrapper">
-      <h2>Board component</h2>
       <SidebarComponent posts={posts} />
       <ContentBoard />
     </div>

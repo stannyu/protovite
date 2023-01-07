@@ -9,6 +9,8 @@ import { BoardComponent } from './components/board/BoardComponent';
 import { LoginComponent } from './components/login/LoginComponent';
 import { NotFoundPageComponent } from './components/404/404';
 
+import { Account, Profile, User } from './components/User';
+
 import './App.scss';
 
 function App() {
@@ -23,15 +25,26 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/login" element={<LoginComponent />} />
+
         <Route path="/" element={<RootLayout />}>
           <Route index element={<RootComponent />} />
           <Route path="home" element={<RootComponent />} />
-          <Route path="/board" element={<BoardComponent />}>
+
+          <Route path="board" element={<BoardComponent />}>
             <Route index element={<BoardComponent />} />
-            <Route path="/board/:folderId" element={<FolderDetails />} />
+            <Route path=":folderId" element={<FolderDetails />} />
           </Route>
+
+          <Route path="user" element={<User />}>
+            <Route index element={<Profile />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="account" element={<Account />} />
+            <Route path="*" element={<NotFoundPageComponent />} />
+          </Route>
+
           <Route path="*" element={<NotFoundPageComponent />} />
         </Route>
+
       </Routes>
     </div>
   );

@@ -32,7 +32,7 @@ function App() {
 
           <Route path="board" element={<BoardComponent />}>
             <Route index element={<BoardComponent />} />
-            <Route path=":folderId" element={<FolderDetails />} />
+            <Route path="folder/:folderId" element={<FolderDetails />} />
           </Route>
 
           <Route path="user" element={<User />}>
@@ -45,6 +45,7 @@ function App() {
           <Route path="*" element={<NotFoundPageComponent />} />
         </Route>
 
+        <Route path="*" element={<NotFoundPageComponent />} />
       </Routes>
     </div>
   );

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+
 import { SidebarComponent } from './SidebarComponent';
-import { ContentBoard } from './content/ContentBoard';
 
 import './board.scss';
 
@@ -21,7 +22,10 @@ const BoardComponent = () => {
   return (
     <div className="board_wrapper">
       <SidebarComponent posts={posts} />
-      <ContentBoard />
+      <div className="content_wrapper">
+        <h2>Board Content component</h2>
+        <Outlet />
+      </div>
     </div>
   );
 };

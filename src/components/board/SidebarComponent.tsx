@@ -15,7 +15,7 @@ const SidebarComponent: FunctionComponent<SidebarProps> = ({posts}) => {
         {posts.length > 0 &&
           posts.map(post => (
             <li key={post.id}>
-              <Link to={`/board/${post.id}`}>{post.title}</Link>
+              <Link to={`/board/folder/${post.id}`}>{post.title}</Link>
             </li>
           ))}
       </ul>

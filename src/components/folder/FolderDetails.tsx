@@ -1,30 +1,33 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { PostType } from '../board/BoardComponent';
+import { BASE_URL } from '../../http/todosApi';
+import { TodoType } from '../board/BoardComponent';
 
 const FolderDetails = () => {
-  const { folderId } = useParams();
-  const [post, setPost] = useState<PostType | null>(null);
+  const { todoId } = useParams();
+  const [todo, setTodo] = useState<TodoType | null>(null);
 
   useEffect(() => {
-    let postId = 6;
+    if (todoId) {
+      axios.get<TodoType>(`${BASE_URL}/todos/${todoId}`).then(r => setTodo(r.data));
+    }
+  }, [todoId]);
 
-    axios.get<PostType>(`https://jsonplaceholder.typicode.com/posts/${postId}`).then(r => setPost(r.data));
-  }, []);
-
-  const PostDetails = (
+  const TodoDetails = (
     <div>
-      <h1>🎤{post?.title}</h1>
-      <p>{post?.body}</p>
+      <h1>🎤{todo?.title}</h1>
+      <p>
+        {todo?.id} : {todo?.completed ? '✅' : '❌'}
+      </p>
     </div>
   );
 
   return (
     <div>
-      <p>Folder id: {folderId}</p>
+      <p>Todo id: {todoId}</p>
 
-      {post && PostDetails}
+      {todo && TodoDetails}
     </div>
   );
 };

@@ -1,21 +1,22 @@
 import React, { FunctionComponent } from 'react';
-import { PostType } from './BoardComponent';
 import { Link } from 'react-router-dom';
+
+import { TodoType } from '../../types/todo';
 
 import './board.scss';
 
 type SidebarProps = {
-    posts: PostType[]
-}
+  todos: TodoType[];
+};
 
-const SidebarComponent: FunctionComponent<SidebarProps> = ({posts}) => {
+const SidebarComponent: FunctionComponent<SidebarProps> = ({ todos }) => {
   return (
     <div className="sidebar_wrapper">
       <ul>
-        {posts.length > 0 &&
-          posts.map(post => (
-            <li key={post.id}>
-              <Link to={`/board/folder/${post.id}`}>{post.title}</Link>
+        {todos.length > 0 &&
+          todos.map(todo => (
+            <li key={todo.id}>
+              <Link to={`/board/folder/${todo.id}`}>{todo.title}</Link>
             </li>
           ))}
       </ul>

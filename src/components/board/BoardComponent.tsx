@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient, QueryCache } from '@tanstack/react-query';
 
 import { SidebarComponent } from './SidebarComponent';
 import { TodoType } from '../../types/todo';
@@ -70,7 +70,7 @@ const BoardComponent = () => {
 
   return (
     <div className="board_wrapper">
-      {todosData && <SidebarComponent todos={todosData} />}
+      {todosData && <SidebarComponent />}
       <div className="content_wrapper">
         <h2>Board Content component</h2>
         <form onSubmit={handleSubmit}>

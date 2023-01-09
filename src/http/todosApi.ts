@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TodoType } from '../components/board/BoardComponent';
+import { TodoType } from '../types/todo';
 
 const BASE_URL = 'http://localhost:4000';
 const TYPICODE_URL = 'https://jsonplaceholder.typicode.com';
@@ -9,10 +9,9 @@ const todosApi = axios.create({
 });
 
 const getTodos = async () => {
-    const response = await todosApi.get<TodoType[]>('/todos');
-    //   let todos = response.data.slice(0, 20);
-      let todos = response.data;
-      return todos;
+  const response = await todosApi.get<TodoType[]>('/todos');
+  let todos = response.data;
+  return todos;
 };
 
 const addTodo = async (todo: TodoType) => {

@@ -1,20 +1,23 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
-import { TodoType } from '../../types/todo';
+import { getTodoQuery } from '../../queries/todosQueries';
 
 import './board.scss';
 
-type SidebarProps = {
-  todos: TodoType[];
-};
+const SidebarComponent: FunctionComponent = (): JSX.Element => {
+  const { data: todosData, isLoading, isError, error } = useQuery(getTodoQuery);
 
-const SidebarComponent: FunctionComponent<SidebarProps> = ({ todos }) => {
+  useEffect(() => {
+    console.log('Sidebar query: ', todosData);
+  }, [todosData]);
+
   return (
     <div className="sidebar_wrapper">
       <ul>
-        {todos.length > 0 &&
-          todos.map(todo => (
+        {todosData &&
+          todosData.map(todo => (
             <li key={todo.id}>
               <Link to={`/board/folder/${todo.id}`}>{todo.title}</Link>
             </li>

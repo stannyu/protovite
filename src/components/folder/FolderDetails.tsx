@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { BASE_URL } from '../../http/todosApi';
-import { TodoType } from '../board/BoardComponent';
+import { TodoType } from '../../types/todo';
+
 
 const FolderDetails = () => {
   const { todoId } = useParams();

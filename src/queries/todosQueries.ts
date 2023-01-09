@@ -1,7 +1,12 @@
 import { queryClient } from '../QueryClient';
 import { addTodo, deleteTodo, getTodos, updateTodo } from '../http/todosApi';
+import { TodoType } from '../types/todo';
 
-const getTodoQuery = { queryKey: ['todos'], queryFn: getTodos };
+const getTodoQuery = {
+  queryKey: ['todos'],
+  queryFn: getTodos,
+  select: (data: TodoType[]) => data.filter((d: TodoType) => d.userId === 2),
+};
 
 const addTodoMutationQuery = {
   mutationFn: addTodo,
